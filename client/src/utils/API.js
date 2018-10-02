@@ -7,12 +7,8 @@ export default {
     let queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
     let queryParams = { "apiKey": "b9f91d369ff59547cd47b931d8cbc56b:0:74623931" };
     queryParams.topic = topic;
-    if (parseInt(startYear)) {
-      queryParams.begin_date = `${startYear}0101`;
-    }
-    if (parseInt(endYear)) {
-      queryParams.end_date = `${endYear}0101`
-    }
+    queryParams.begin_date = `${startYear}0101`;
+    queryParams.end_date = `${endYear}0101`
     let completeURL = `${queryURL}q=${queryParams.topic}&begin_date=${queryParams.begin_date}&end_date=${queryParams.end_date}&api-key=${queryParams.apiKey}`
     return completeURL
   },

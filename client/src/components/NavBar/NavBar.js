@@ -34,9 +34,9 @@ const LinkItem = styled('p')(
 
 const NavBar = () => {
     return (
-        <AppBar position="static">
+        <AppBar position="static" style={{marginBottom: 40}}>
             <Title>
-                New York Times Article Explorer
+                New York Times Archive Explorer
         </Title>
             <LinksWrapper>
                 <Link to="/"><LinkItem>Home</LinkItem></Link>

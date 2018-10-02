@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import API from "../../utils/API.js";
 import MaterialGrid from "../../components/MaterialGrid";
-import SearchForm from "../../components/SearchForm";
+import SearchForm from "../../components/SearchForm/SearchForm";
+import Results from "../../components/Results";
+import HomeImage from "../../components/HomeImage";
 // import { Link } from "react-router-dom";
 
 class Articles extends Component {
@@ -9,23 +11,9 @@ class Articles extends Component {
     articles: [],
     topic: "",
     startYear: "",
-    endYear: ""
+    endYear: "",
+    imgSrc: "https://qutech.nl/wp-content/uploads/2015/11/NYTimes-banner.jpg",
   };
-
-  // componentDidMount() {
-  // this.loadResults();
-  // }
-
-  // loadResults = () => {
-
-  // }
-
-  // loadNewArticles = () => {
-  //   API.loadNewArticles()
-  //   then(res => 
-  //     this.setState({articles: res.data, title: "", date: "", url: ""})
-  //     )
-  // }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -45,21 +33,18 @@ class Articles extends Component {
       })
 
       API.runNewSearch(queryURL)
-        .then(res => { console.log(res) })
+        .then(res => { this.setState({ articles: res.data.response.docs }); console.log(this.state) })
+        .catch(error => { console.log(error) })
 
-      // .then(response => {console.log(response)})
-      //   .then(res => console.log(res))
-      //   .catch(err => console.log(err));
     }
   };
 
   render() {
     return (
       <div>
-        <MaterialGrid container justify="space-around">
+        <MaterialGrid container spacing={24} wrap='wrap'>
 
-          <MaterialGrid item lg={10} md={10} sm={10} xs={10}>
-            <h2 style={{ marginLeft: 20, marginTop: 20 }}>Search Form</h2>
+          <MaterialGrid item lg={3} md={4} sm={12} xs={12}>
             <SearchForm
               topic={this.state.topic}
               startYear={this.state.startYear}
@@ -69,8 +54,12 @@ class Articles extends Component {
             />
           </MaterialGrid>
 
-          <MaterialGrid item lg={10} md={10} sm={10} xs={10}>
-            <h2>Results</h2>
+          <MaterialGrid item lg={9} md={8} sm={12} xs={12}>
+
+            <Results articles={this.state.articles} />
+
+            <HomeImage imgSrc={ this.state.imgSrc ? this.state.imgSrc : "-"} />
+
           </MaterialGrid>
 
         </MaterialGrid>

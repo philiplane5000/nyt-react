@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from "react";
 import TextField from '@material-ui/core/TextField';
 import styled from 'react-emotion';
 
@@ -22,7 +22,7 @@ const Button = styled('button')(
     }
 )
 
-class SearchForm extends React.Component {
+class SearchForm extends Component {
 
     constructor(props) {
         super(props);
@@ -40,6 +40,7 @@ class SearchForm extends React.Component {
                         id="outlined-required"
                         label="Keyword/(s)"
                         name="topic"
+                        fullWidth={true}
                         // className={classes.textField}
                         margin="normal"
                         variant="outlined"
@@ -50,6 +51,7 @@ class SearchForm extends React.Component {
                     <TextField
                         id="outlined-name"
                         label="Start Year"
+                        fullWidth={true}
                         // className={classes.textField}
                         name="startYear"
                         value={this.props.startYear}
@@ -62,6 +64,7 @@ class SearchForm extends React.Component {
                     <TextField
                         id="outlined-name"
                         label="End Year"
+                        fullWidth={true}
                         // className={classes.textField}
                         name="endYear"
                         value={this.props.endYear}

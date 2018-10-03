@@ -42,9 +42,9 @@ class Articles extends Component {
   render() {
     return (
       <div>
-        <MaterialGrid container spacing={24} wrap='wrap'>
+        <MaterialGrid container spacing={24} justify="center" wrap='wrap'>
 
-          <MaterialGrid item lg={3} md={4} sm={12} xs={12}>
+          <MaterialGrid item lg={6} md={6} sm={8} xs={10}>
             <SearchForm
               topic={this.state.topic}
               startYear={this.state.startYear}
@@ -54,7 +54,7 @@ class Articles extends Component {
             />
           </MaterialGrid>
 
-          <MaterialGrid item lg={9} md={8} sm={12} xs={12}>
+          <MaterialGrid item lg={12} md={12} sm={12} xs={12} >
 
             <Results articles={this.state.articles} />
 

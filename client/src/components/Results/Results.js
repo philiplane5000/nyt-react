@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'react-emotion';
+import API from '../../utils/API';
 
 const OuterWrapper = styled('div')(
     {
-        border: '1px dashed white'
+        margin: 20,
+        borderRadius: 10,
+        border: '1px dashed white',
+        background: '#dce3e9'
     }
 )
 
@@ -15,6 +19,8 @@ const Title = styled('h2')(
 
 const Article = styled('div')(
     {
+        display: 'flex',
+        justifyContent: 'space-between',
         borderTopStyle: 'double',
         borderBottomStyle: 'double',
         paddingTop: 10,
@@ -25,6 +31,13 @@ const Article = styled('div')(
         borderBottomWidth: 8,
         margin: 40,
         paddingLeft: 20,
+        background: 'white'
+    }
+)
+
+const ArticleContent = styled('div')(
+    {
+        flex: 9
     }
 )
 
@@ -34,17 +47,104 @@ const ArticleLink = styled('a')(
     }
 )
 
-const Results = ({ articles }) => (
-    <OuterWrapper>
-        {articles.map(doc => (
-            <Article>
-                <Title><ArticleLink href={doc.web_url}>{doc.headline.main}</ArticleLink></Title>
-                <p>Published in {doc.pub_date.slice(0, 4)}</p>
-                <p>Type: {(doc.news_desk) ? doc.news_desk : "Archive"}</p>
-            </Article>
-
-        ))}
-    </OuterWrapper>
+const ButtonContainer = styled('div')(
+    {
+        display: 'flex',
+        alignItems: 'center',
+        flex: 1,
+    }
 )
 
+const Button = styled('button')(
+    {
+        background: '#dc3545',
+        borderRadius: 3,
+        border: 0,
+        color: 'white',
+        height: 48,
+        padding: '0 30px',
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        textTransform: 'capitalize'
+    }
+)
+
+class Results extends Component {
+
+    state = {
+        saveArticles: [],
+    }
+
+    constructor(props) {
+        super(props);
+    }
+
+    handleSavedArticle = (_id, headline, url, pubDate) => {
+        const articleData = { _id, headline, url, pubDate }
+        API.saveArticle(articleData)
+            .then(response => {
+                console.log(response.status)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+
+    render() {
+        return (
+            <div>
+                <OuterWrapper>
+                    {this.props.articles.map(doc => (
+                        <Article key={doc._id} id={doc._id}>
+
+                            <ArticleContent>
+                                <Title><ArticleLink href={doc.web_url} target="_blank">{doc.headline.main}</ArticleLink></Title>
+                                <p>Published in {doc.pub_date.slice(0, 4)}</p>
+                                <p>Type: {(doc.news_desk) ? doc.news_desk : "Archive"}</p>
+                            </ArticleContent>
+
+                            <ButtonContainer>
+                                <Button onClick={() => this.handleSavedArticle(doc._id, doc.headline.main, doc.web_url, doc.pub_date.slice(0, 4))}>
+                                    SAVE
+                                </Button>
+                            </ButtonContainer>
+
+
+                        </Article>
+
+                    ))}
+                </OuterWrapper>
+            </div>
+        )
+    }
+
+}
+
 export default Results;
+
+// `HTML: ${document.getElementById(doc._id).innerHTML}`
+
+// const Results = ({ articles }) => (
+//     <OuterWrapper>
+//         {articles.map(doc => (
+//             <Article key={doc._id} id={doc._id}>
+
+//                 <ArticleContent>
+//                     <Title><ArticleLink href={doc.web_url} target="_blank">{doc.headline.main}</ArticleLink></Title>
+//                     <p>Published in {doc.pub_date.slice(0, 4)}</p>
+//                     <p>Type: {(doc.news_desk) ? doc.news_desk : "Archive"}</p>
+//                 </ArticleContent>
+
+//                 <ButtonContainer>
+//                     <Button onClick={() => console.log(`HTML: ${document.getElementById(doc._id).innerHTML}`)}>
+//                         SAVE
+//                     </Button>
+//                 </ButtonContainer>
+
+
+//             </Article>
+
+//         ))}
+//     </OuterWrapper>
+// )
+
+// export default Results;

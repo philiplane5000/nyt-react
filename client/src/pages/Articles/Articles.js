@@ -13,6 +13,7 @@ class Articles extends Component {
     startYear: "",
     endYear: "",
     imgSrc: "https://qutech.nl/wp-content/uploads/2015/11/NYTimes-banner.jpg",
+    articlesToSave: [],
   };
 
   handleInputChange = event => {
@@ -39,6 +40,11 @@ class Articles extends Component {
     }
   };
 
+  handleSaveArticle = event => {
+    event.preventDefault()
+
+  }
+
   render() {
     return (
       <div>
@@ -56,7 +62,7 @@ class Articles extends Component {
 
           <MaterialGrid item lg={12} md={12} sm={12} xs={12} >
 
-            <Results articles={this.state.articles} />
+            <Results articles={this.state.articles}/>
 
             <HomeImage imgSrc={ this.state.imgSrc ? this.state.imgSrc : "-"} />
 

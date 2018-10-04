@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import MaterialGrid from "../../components/MaterialGrid";
+import ArticleBox from "../../components/ArticleBox";
 import styled from "react-emotion";
 // import { Link } from "react-router-dom";
 
@@ -98,6 +99,7 @@ class Saved extends Component {
         return (
             <MaterialGrid container justify="center">
                 <MaterialGrid item lg={10} md={10} sm={12} xs={12}>
+                <ArticleBox header="My Library">
                     <OuterWrapper>
                         {this.state.articles.map(article => (
                             <Article key={article._id} id={article._id}>
@@ -108,6 +110,7 @@ class Saved extends Component {
                             </Article>
                         ))}
                     </OuterWrapper>
+                </ArticleBox>
                 </MaterialGrid>
             </MaterialGrid>
         )

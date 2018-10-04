@@ -29,7 +29,6 @@ const LinkItem = styled('p')(
         fontSize: '1.4rem',
         padding: 10,
     }
-
 )
 
 const NavBar = () => {
@@ -39,7 +38,7 @@ const NavBar = () => {
                 New York Times Archive Explorer
         </Title>
             <LinksWrapper>
-                <Link to="/"><LinkItem>Home</LinkItem></Link>
+                <Link to="/"><LinkItem>Search</LinkItem></Link>
                 <Link to="/saved"><LinkItem>My Library</LinkItem></Link>
             </LinksWrapper>
         </AppBar>
@@ -47,7 +46,3 @@ const NavBar = () => {
 }
 
 export default NavBar;
-
-
-
-// export default NavBar;

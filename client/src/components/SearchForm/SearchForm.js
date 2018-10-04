@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
 import styled from 'react-emotion';
 
 const FormItemWrapper = styled('div')(
@@ -32,20 +33,42 @@ class SearchForm extends Component {
         return (
             <form styles={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }} noValidate autoComplete="off">
                 <FormItemWrapper>
-                    <h3>Search The Archives</h3>
-                </FormItemWrapper>
-                <FormItemWrapper>
                     <TextField
                         required
                         id="outlined-required"
                         label="Keyword/(s)"
                         name="topic"
+                        value={this.props.topic}
                         fullWidth={true}
                         // className={classes.textField}
                         margin="normal"
                         variant="outlined"
                         onChange={this.props.handleInputChange}
                     />
+                </FormItemWrapper>
+                <FormItemWrapper>
+                    <TextField
+                        select
+                        label="Number of Records"
+                        // className={classes.textField}
+                        name="num"
+                        value={this.props.num}
+                        fullWidth={true}
+                        onChange={this.props.handleInputChange}
+                        // SelectProps={{
+                        //     MenuProps: {
+                        //         className: classes.menu,
+                        //     },
+                        // }}
+                        helperText="Number of Records to Retrieve"
+                        margin="normal"
+                        variant="outlined"
+                        style={{textAlign: 'left'}}
+                    >
+                        <MenuItem key={1} value={1}>1</MenuItem>
+                        <MenuItem key={5} value={5}>5</MenuItem>
+                        <MenuItem key={10} value={10}>10</MenuItem>
+                    </TextField>
                 </FormItemWrapper>
                 <FormItemWrapper>
                     <TextField
@@ -78,7 +101,6 @@ class SearchForm extends Component {
                         SUBMIT
                     </Button>
                 </FormItemWrapper>
-
             </form>
         );
     }

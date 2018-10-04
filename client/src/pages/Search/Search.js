@@ -1,19 +1,17 @@
-import React, { Component } from "react";
-import API from "../../utils/API.js";
-import MaterialGrid from "../../components/MaterialGrid";
-import SearchForm from "../../components/SearchForm/SearchForm";
-import Results from "../../components/Results";
-import HomeImage from "../../components/HomeImage";
-// import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import API from '../../utils/API.js';
+import MaterialGrid from '../../components/MaterialGrid/index.js';
+import SearchForm from '../../components/SearchForm/SearchForm.js';
+import ArticleBox from '../../components/ArticleBox';
+import Results from '../../components/Results/index.js';
 
-class Articles extends Component {
+class Search extends Component {
   state = {
     articles: [],
     topic: "",
     startYear: "",
     endYear: "",
-    imgSrc: "https://qutech.nl/wp-content/uploads/2015/11/NYTimes-banner.jpg",
-    articlesToSave: [],
+    num: 10,
   };
 
   handleInputChange = event => {
@@ -50,21 +48,24 @@ class Articles extends Component {
       <div>
         <MaterialGrid container spacing={24} justify="center" wrap='wrap'>
 
-          <MaterialGrid item lg={6} md={6} sm={8} xs={10}>
+          <MaterialGrid item lg={9} md={9} sm={10} xs={12}>
+          <ArticleBox header="Search the Archives" icon={<i class="fa fa-search" aria-hidden="true"></i>}>
             <SearchForm
               topic={this.state.topic}
               startYear={this.state.startYear}
               endYear={this.state.endYear}
+              num={this.state.num}
               handleInputChange={this.handleInputChange}
               handleFormSubmit={this.handleFormSubmit}
             />
+          </ArticleBox>
           </MaterialGrid>
 
-          <MaterialGrid item lg={12} md={12} sm={12} xs={12} >
+          <MaterialGrid item lg={9} md={9} sm={10} xs={12} >
 
-            <Results articles={this.state.articles}/>
-
-            <HomeImage imgSrc={ this.state.imgSrc ? this.state.imgSrc : "-"} />
+            <ArticleBox header="Results" icon={<i className="fa fa-newspaper-o"></i>}>
+              <Results articles={this.state.articles} num={this.state.num} />
+            </ArticleBox>
 
           </MaterialGrid>
 
@@ -74,4 +75,4 @@ class Articles extends Component {
   }
 }
 
-export default Articles;
+export default Search;

@@ -63,6 +63,7 @@ const Button = styled('button')(
         color: 'white',
         height: 48,
         padding: '0 30px',
+        marginRight: 20,
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
         textTransform: 'capitalize'
     }
@@ -90,28 +91,29 @@ class Results extends Component {
     }
 
     render() {
+        const numRecords = this.props.num
         return (
             <div>
                 <OuterWrapper>
-                    {this.props.articles.map(doc => (
-                        <Article key={doc._id} id={doc._id}>
-
-                            <ArticleContent>
-                                <Title><ArticleLink href={doc.web_url} target="_blank">{doc.headline.main}</ArticleLink></Title>
-                                <p>Published in {doc.pub_date.slice(0, 4)}</p>
-                                <p>Type: {(doc.news_desk) ? doc.news_desk : "Archive"}</p>
-                            </ArticleContent>
-
-                            <ButtonContainer>
-                                <Button onClick={() => this.handleSavedArticle(doc._id, doc.headline.main, doc.web_url, doc.pub_date.slice(0, 4))}>
-                                    SAVE
+                    {this.props.articles.map((doc, index) => {
+                        return index < numRecords ?
+                            <Article key={doc._id} id={doc._id}>
+                                <ArticleContent>
+                                    <Title><ArticleLink href={doc.web_url} target="_blank">{doc.headline.main}</ArticleLink></Title>
+                                    <p>Published in {doc.pub_date.slice(0, 4)}</p>
+                                    <p>Type: {(doc.news_desk) ? doc.news_desk : "Archive"}</p>
+                                </ArticleContent>
+                                <ButtonContainer>
+                                    <Button onClick={() => this.handleSavedArticle(doc._id, doc.headline.main, doc.web_url, doc.pub_date.slice(0, 4))}>
+                                        SAVE
                                 </Button>
-                            </ButtonContainer>
+                                </ButtonContainer>
+                            </Article> :
+                            null
 
+                    }
 
-                        </Article>
-
-                    ))}
+                    )}
                 </OuterWrapper>
             </div>
         )
@@ -120,31 +122,3 @@ class Results extends Component {
 }
 
 export default Results;
-
-// `HTML: ${document.getElementById(doc._id).innerHTML}`
-
-// const Results = ({ articles }) => (
-//     <OuterWrapper>
-//         {articles.map(doc => (
-//             <Article key={doc._id} id={doc._id}>
-
-//                 <ArticleContent>
-//                     <Title><ArticleLink href={doc.web_url} target="_blank">{doc.headline.main}</ArticleLink></Title>
-//                     <p>Published in {doc.pub_date.slice(0, 4)}</p>
-//                     <p>Type: {(doc.news_desk) ? doc.news_desk : "Archive"}</p>
-//                 </ArticleContent>
-
-//                 <ButtonContainer>
-//                     <Button onClick={() => console.log(`HTML: ${document.getElementById(doc._id).innerHTML}`)}>
-//                         SAVE
-//                     </Button>
-//                 </ButtonContainer>
-
-
-//             </Article>
-
-//         ))}
-//     </OuterWrapper>
-// )
-
-// export default Results;

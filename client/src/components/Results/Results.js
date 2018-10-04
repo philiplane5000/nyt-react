@@ -108,17 +108,13 @@ class Results extends Component {
                                         SAVE
                                 </Button>
                                 </ButtonContainer>
-                            </Article> :
-                            null
-
+                            </Article> : null
                     }
-
                     )}
                 </OuterWrapper>
             </div>
         )
     }
-
 }
 
 export default Results;

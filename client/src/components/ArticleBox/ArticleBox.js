@@ -22,7 +22,7 @@ const Header = styled ('h1') (
 const ArticleBox = (props) => {
     return (
     <ArticleWrapper>
-        <Header>{props.icon} {props.header}</Header>
+        <Header>&nbsp;{props.icon}&nbsp;&nbsp;{props.header}</Header>
         {props.children}
     </ArticleWrapper>
     )

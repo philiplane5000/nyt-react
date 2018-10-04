@@ -40,7 +40,6 @@ class SearchForm extends Component {
                         name="topic"
                         value={this.props.topic}
                         fullWidth={true}
-                        // className={classes.textField}
                         margin="normal"
                         variant="outlined"
                         onChange={this.props.handleInputChange}
@@ -50,16 +49,10 @@ class SearchForm extends Component {
                     <TextField
                         select
                         label="Number of Records"
-                        // className={classes.textField}
                         name="num"
                         value={this.props.num}
                         fullWidth={true}
                         onChange={this.props.handleInputChange}
-                        // SelectProps={{
-                        //     MenuProps: {
-                        //         className: classes.menu,
-                        //     },
-                        // }}
                         helperText="Number of Records to Retrieve"
                         margin="normal"
                         variant="outlined"
@@ -75,7 +68,6 @@ class SearchForm extends Component {
                         id="outlined-name"
                         label="Start Year"
                         fullWidth={true}
-                        // className={classes.textField}
                         name="startYear"
                         value={this.props.startYear}
                         onChange={this.props.handleInputChange}
@@ -88,7 +80,6 @@ class SearchForm extends Component {
                         id="outlined-name"
                         label="End Year"
                         fullWidth={true}
-                        // className={classes.textField}
                         name="endYear"
                         value={this.props.endYear}
                         onChange={this.props.handleInputChange}
@@ -106,47 +97,4 @@ class SearchForm extends Component {
     }
 }
 
-// SearchForm.propTypes = {
-//     classes: PropTypes.object.isRequired,
-// };
-
 export default SearchForm;
-
-/*
-
-const styles = theme => ({
-    container: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
-    textField: {
-        marginLeft: theme.spacing.unit,
-        marginRight: theme.spacing.unit,
-    },
-    dense: {
-        marginTop: 16,
-    },
-    menu: {
-        width: 200,
-    },
-});
-
-<form>
-<InputWrapper>
-    <label style={{ textAlign: 'center' }}>Topic</label>
-    <input type="text" value={topic} name="topic" placeholder="Search by topic" onChange={handleInputChange} style={{ borderRadius: 5 }}></input>
-</InputWrapper>
-<InputWrapper>
-    <label style={{ textAlign: 'center' }}>Start Year</label>
-    <input type="text" value={startYear} name="startYear" placeholder="YYYY" onChange={handleInputChange}></input>
-</InputWrapper>
-<InputWrapper>
-    <label style={{ textAlign: 'center' }}>End Year</label>
-    <input type="text" value={endYear} name="endYear" placeholder="YYYY" onChange={handleInputChange}></input>
-</InputWrapper>
-<InputWrapper>
-    <button onClick={handleFormSubmit}>SUBMIT</button>
-</InputWrapper>
-</form>
-
-*/

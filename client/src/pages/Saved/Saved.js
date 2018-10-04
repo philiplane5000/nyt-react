@@ -3,7 +3,6 @@ import API from "../../utils/API";
 import MaterialGrid from "../../components/MaterialGrid";
 import ArticleBox from "../../components/ArticleBox";
 import styled from "react-emotion";
-// import { Link } from "react-router-dom";
 
 const OuterWrapper = styled('div')(
     {
@@ -60,12 +59,14 @@ const ButtonContainer = styled('div')(
 
 const Button = styled('button')(
     {
+        cursor: 'pointer',
         background: '#dc3545',
         borderRadius: 3,
         border: 0,
         color: 'white',
         height: 48,
         padding: '0 30px',
+        marginRight: 20,
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
         textTransform: 'capitalize'
     }
@@ -90,7 +91,7 @@ class Saved extends Component {
     };
 
     deleteSavedArticle = id => {
-        API.deleteArticle(id)
+        API.deleteSavedArticle(id)
             .then(res => this.loadSavedArticles())
             .catch(err => console.log(err));
     };
@@ -99,7 +100,7 @@ class Saved extends Component {
         return (
             <MaterialGrid container justify="center">
                 <MaterialGrid item lg={10} md={10} sm={12} xs={12}>
-                <ArticleBox header="My Library">
+                <ArticleBox header="My Library" icon={<i className="fas fa-book-reader"></i>}>
                     <OuterWrapper>
                         {this.state.articles.map(article => (
                             <Article key={article._id} id={article._id}>
@@ -107,6 +108,11 @@ class Saved extends Component {
                                     <Title><ArticleLink href={article.url} target="_blank">{article.headline}</ArticleLink></Title>
                                     <p>Published in {article.pubDate}</p>
                                 </ArticleContent>
+                                <ButtonContainer>
+                                    <Button onClick={() => this.deleteSavedArticle(article._id)}>
+                                        DELETE
+                                    </Button>
+                                </ButtonContainer>
                             </Article>
                         ))}
                     </OuterWrapper>

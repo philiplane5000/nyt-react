@@ -6,6 +6,7 @@ import ArticleBox from '../../components/ArticleBox';
 import Results from '../../components/Results/index.js';
 
 class Search extends Component {
+
   state = {
     articles: [],
     topic: "",
@@ -30,31 +31,26 @@ class Search extends Component {
         endYear: this.state.endYear
       })
       API.runNewSearch(queryURL)
-        .then(res => { this.setState({ articles: res.data.response.docs })})
+        .then(res => { this.setState({ articles: res.data.response.docs }) })
         .catch(error => { console.log(error) })
     }
   };
-
-  handleSaveArticle = event => {
-    event.preventDefault()
-
-  }
 
   render() {
     return (
       <div>
         <MaterialGrid container spacing={24} justify="center" wrap='wrap'>
           <MaterialGrid item lg={9} md={9} sm={10} xs={12}>
-          <ArticleBox header="Search the Archives" icon={<i className="fa fa-search" aria-hidden="true"></i>}>
-            <SearchForm
-              topic={this.state.topic}
-              startYear={this.state.startYear}
-              endYear={this.state.endYear}
-              num={this.state.num}
-              handleInputChange={this.handleInputChange}
-              handleFormSubmit={this.handleFormSubmit}
-            />
-          </ArticleBox>
+            <ArticleBox header="Search the Archives" icon={<i className="fa fa-search" aria-hidden="true"></i>}>
+              <SearchForm
+                topic={this.state.topic}
+                startYear={this.state.startYear}
+                endYear={this.state.endYear}
+                num={this.state.num}
+                handleInputChange={this.handleInputChange}
+                handleFormSubmit={this.handleFormSubmit}
+              />
+            </ArticleBox>
           </MaterialGrid>
           <MaterialGrid item lg={9} md={9} sm={10} xs={12} >
             <ArticleBox header="Results" icon={<i className="fa fa-newspaper-o"></i>}>

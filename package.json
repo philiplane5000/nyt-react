@@ -1,7 +1,7 @@
 {
   "name": "mern",
   "version": "1.0.0",
-  "description": "",
+  "description": "NYT Archive Explorer",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -24,6 +24,7 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "if-env": "^1.0.4",
-    "mongoose": "^5.0.17"
+    "mongoose": "^5.0.17",
+    "socket.io": "^2.1.1"
   }
 }

@@ -17,3 +17,7 @@ Search the New York Times database by topic and within a start and end year of y
 * [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
 
 - - -
+
+### Other
+
+* Remove MaterialGrid component and import Grid directly

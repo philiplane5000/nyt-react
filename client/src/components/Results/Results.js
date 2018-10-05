@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import styled from 'react-emotion';
 import API from '../../utils/API';
+import openSocket from 'socket.io-client';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal)
+
+//socket.io
+const socket = openSocket('http://localhost:8000');
 
 const OuterWrapper = styled('div')(
     {
@@ -77,6 +85,13 @@ class Results extends Component {
 
     constructor(props) {
         super(props);
+        this.sendSocketIO = this.sendSocketIO.bind(this);
+    }
+
+    sendSocketIO(headline) {
+        return new Promise((resolve, reject) => {
+            resolve(socket.emit('savedArticle', headline))
+        })
     }
 
     handleSavedArticle = (_id, headline, url, pubDate) => {
@@ -84,10 +99,31 @@ class Results extends Component {
         API.saveArticle(articleData)
             .then(response => {
                 console.log(response.status)
+                this.sendSocketIO(headline)
+                    .then(response => {
+                        console.log(response)
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
             })
             .catch(error => {
                 console.log(error)
             })
+    }
+
+
+    componentDidMount() {
+        socket.on('article', function (title) {
+            console.log(`ARTICLE SAVED ID: ${title}`)
+            //FIND ALTERNATE TO BELOW FOR ALERTING CLIENT:
+            Swal({
+                title: 'Article Saved!',
+                text: `"${title}"`,
+                type: 'success',
+                confirmButtonText: 'Ok'
+              })
+        })
     }
 
     render() {
@@ -106,7 +142,7 @@ class Results extends Component {
                                 <ButtonContainer>
                                     <Button onClick={() => this.handleSavedArticle(doc._id, doc.headline.main, doc.web_url, doc.pub_date.slice(0, 4))}>
                                         SAVE
-                                </Button>
+                                    </Button>
                                 </ButtonContainer>
                             </Article> : null
                     }

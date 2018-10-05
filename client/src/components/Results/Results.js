@@ -101,7 +101,7 @@ class Results extends Component {
                 console.log(response.status)
                 this.sendSocketIO(headline)
                     .then(response => {
-                        console.log(response)
+                        console.log(`Socket Connected: ${response.connected}`)
                     })
                     .catch(error => {
                         console.log(error)
@@ -115,7 +115,7 @@ class Results extends Component {
 
     componentDidMount() {
         socket.on('article', function (title) {
-            console.log(`ARTICLE SAVED ID: ${title}`)
+            console.log(`SAVED ARTICLE: "${title}"`)
             //FIND ALTERNATE TO BELOW FOR ALERTING CLIENT:
             Swal({
                 title: 'Article Saved!',

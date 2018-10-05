@@ -8,7 +8,7 @@ import withReactContent from 'sweetalert2-react-content';
 const MySwal = withReactContent(Swal)
 
 //socket.io
-const socket = openSocket('http://localhost:8000');
+const socket = openSocket('https://quiet-island-12161.herokuapp.com/');
 
 const OuterWrapper = styled('div')(
     {

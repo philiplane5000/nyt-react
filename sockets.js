@@ -1,5 +1,3 @@
-const socketPORT = process.env.PORT || 8000;
-
 module.exports = (io) => {
     io.on('connection', function (socket) {
         console.log('a user connected');
@@ -13,5 +11,5 @@ module.exports = (io) => {
             // return id + " saved";
         });
     });
-    io.listen(socketPORT);
+    io.listen(8000);
 }

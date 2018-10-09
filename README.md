@@ -10,7 +10,7 @@ Hosted on Heroku: [NYT Article Explorer](https://quiet-island-12161.herokuapp.co
 
 * Revisit saved articles by following the `My Library` link at the top of the page. Saved articles are presented in the same format as they were originally presented.
 
-..* Occasionally, articles from particulary 'dated' publications come with a PDF version of the newspaper the article was published in! 
+* Occasionally, articles from particulary 'dated' publications come with a PDF version of the newspaper the article was published in! 
 
 ### Behind the Scenes
 
